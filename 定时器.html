@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>定时器</title>
+		<style type="text/css">
+			body{
+				font-size:23px;
+				color: red;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="demo"></div>
+		<script type="text/javascript">
+			window.onload=function(){
+				//自定义时间表示方法
+				//var time=new Date("2015/12/12 17:30:00");		//推荐
+				//var time=new Date("2015,12,12");
+				
+				var demo=document.getElementById("demo");
+				var endTime=new Date("2017/06/12");
+				
+				var hours=0;
+				var minutes=0;
+				var seconds=0;
+				var days=0;
+				
+				setInterval(clock,1000);
+				
+				function clock(){
+					var now=new Date();
+					//利用毫秒数相减除以1000获得秒数
+					var ms=parseInt((endTime.getTime()-now.getTime())/1000);
+					
+					
+					days=parseInt(ms / 3600 / 24);
+					hours=parseInt(ms / 3600 % 24);
+					minutes=parseInt(ms / 60 % 60);
+					seconds=parseInt(ms%60);
+					
+					days<10?days="0"+days:days;
+					hours<10?hours="0"+hours:hours;
+					minutes<10?minutes="0"+minutes:minutes;
+					seconds<10?seconds="0"+seconds:seconds;
+					
+					demo.innerHTML="距离抢购时间还有"+days+"天"+hours+"小时"+minutes+"分钟"+seconds+"秒";
+				}
+			}
+		</script>
+	</body>
+</html>

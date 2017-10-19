@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>水平滚动条</title>
+		<style type="text/css">
+			*{margin: 0;padding: 0;}
+			.scroll{
+				width: 400px;
+				height: 8px;
+				background: #CCCCCC;
+				margin: 100px;
+				position: relative;
+			}
+			.bar{
+				width: 10px;
+				height: 25px;
+				background-color: #369;
+				position: absolute;
+				left: 0;
+				top: -8px;
+				cursor: pointer;
+			}
+			.mask{
+				width: 0;
+				height: 100%;
+				background-color: #369;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<div class="scroll" id="scroll">
+			<div class="bar"></div>
+			<div class="mask"></div>
+		</div>
+		<div id="demo"></div>
+		
+		<script type="text/javascript">
+			window.onload=function(){
+				var scrollBar=document.getElementById("scroll");
+				var bar=scrollBar.children[0];
+				var mask=scrollBar.children[1];
+				var demo=document.getElementById("demo");
+				//拖拽：按下+移动
+				//原理：当按下鼠标时候，要记录当前鼠标的位置，算出bar在大盒子内的距离
+				bar.onmousedown=function(e){
+					var e=e || window.event;
+					var that=this;
+					var leftVal=e.clientX-that.offsetLeft;
+					
+					document.onmousemove=function(e){
+						var e=e || window.event;
+						that.style.left=e.clientX-leftVal+'px';
+						
+						var val=parseInt(that.style.left);
+						
+						if(val<0){
+							that.style.left=0;
+						}else if(val>scrollBar.offsetWidth-that.offsetWidth)(
+							that.style.left=scrollBar.offsetWidth-that.offsetWidth+"px"
+						)
+						mask.style.width=that.style.left;	//遮罩盒子宽度
+						window.getSelection?window.getSelection().removeAllRanges():document.selection.empty();
+						//计算百分比
+						demo.innerHTML='已经走了'+parseInt(parseInt(that.style.left) / (scrollBar.offsetWidth-that.offsetWidth) *100) +'%';
+					}
+					document.onmouseup=function(){
+						document.onmousemove=null;
+					}
+					
+				}
+			}
+		</script>
+	</body>
+</html>

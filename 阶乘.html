@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>计算阶乘</title>
+	</head>
+	<body>
+		<label for="jiecheng">请输入数字（计算阶乘）：</label>
+		<input type="text" name="jiecheng" id="jiecheng"/>
+		<div class="result"></div>
+		<script type="text/javascript">
+			function jiechengs(index){
+				if(index==1){
+					return 1;
+				}else{
+					return index*jiechengs(index-1);
+				}
+			}
+			var jiecheng=document.querySelector("#jiecheng");
+			var result=document.querySelector(".result");
+			jiecheng.addEventListener("blur",function(){
+				if(this.value){
+					var re=jiechengs(this.value);
+					result.innerHTML="!"+this.value+"="+re;
+				}
+			},false)
+			jiecheng.addEventListener("focus",function(){
+				this.value="";
+				result.innerHTML="";
+			},false)
+		</script>
+	</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>星座运势</title>
+		<style type="text/css">
+			.xzys {
+				width: 278px;
+				height: 194px;
+				border: 1px solid #d2e1f1;
+				overflow: hidden;
+				margin: 20px auto;
+			}
+			
+			.xzys .dt a {
+				text-decoration: none;
+				color: #000000;
+				padding: 5px 0 5px 10px;
+				display: inline-block;
+			}
+			
+			.xzys .dd {
+				padding-left: 10px;
+			}
+			
+			.xzys .dd .dd-t {
+				overflow: hidden;
+				/*清除浮动*/
+			}
+			
+			.xzys .dd .dd-t .dd-t-l {
+				float: left;
+			}
+			
+			.xzys .dd .dd-t .dd-t-l .ico {
+				width: 50px;
+				height: 50px;
+				display: block;
+				background: url(images/xinzuo.png) no-repeat 0 0;
+			}
+			
+			.xzys .dd .dd-t .dd-t-r {
+				float: left;
+				margin-left: 10px;
+			}
+			
+			.xzys .dd .dd-t .dd-t-r .xingxing {
+				margin-top: 10px;
+				position:relative;
+			}
+			
+			.xzys .dd .dd-t .dd-t-r .xingxing .wenzi {
+				font-size: 13px;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+			
+			.xzys .dd .dd-t .dd-t-r .xingxing .yunshi {
+				display: inline-block;
+				width: 80px;
+				height: 15px;
+				background: url(images/yunshi.png) no-repeat 0 0;
+				position: absolute;
+				right: 0;
+				top: 2px;
+			}
+			
+			.xzys .dd .dd-t .dd-t-r .xingxing .yunshi .yunshiChild {
+				display: inline-block;
+				width: 64px;
+				height: 15px;
+				background: url(images/yunshi.png) no-repeat 0 -27px;
+				position: absolute;
+			}
+			
+			.xzys .dd .dd-b {
+				margin-top: 10px;
+				font-size: 15px;
+				line-height: 25px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="xzys">
+			<div class="dt">
+				<a href="#">星座运势</a>
+			</div>
+			<div class="dd">
+				<div class="dd-t">
+					<div class="dd-t-l">
+						<a href="#" class="ico"></a>
+					</div>
+					<div class="dd-t-r">
+						<select name="xingzuo" id="selectXZ">
+							<option value="0">白羊座(03.21-04.19)</option>
+							<option value="1">金牛座(04.20-05.20)</option>
+							<option value="2">双子座(05.21-06.21)</option>
+							<option value="3">巨蟹座(06.22-07.22)</option>
+							<option value="4">狮子座(07.23-08.22)</option>
+							<option value="5">处女座(08.23-09.22)</option>
+							<option value="6">天秤座(09.23-10.23)</option>
+							<option value="7">天蝎座(10.24-11.22)</option>
+							<option value="8">射手座(11.23-12.21)</option>
+							<option value="9">摩羯座(12.22-01.19)</option>
+							<option value="10">水瓶座(01.20-02.18)</option>
+							<option value="11">双鱼座(02.19-03.20)</option>
+						</select>
+						<div class="xingxing">
+							<span class="wenzi">今日运势：</span>
+							<span class="yunshi">
+								<span class="yunshiChild">
+									
+								</span>
+							</span>
+						</div>
+					</div>
+				</div>
+				<div class="dd-b">
+					<span id="inner">
+						今天白羊座有贵人支持帮助，另一半也会对你关心呵护。不过脾气有些暴躁，很自我，容易和伴侣或者...
+					</span>
+					<a href="#">[详细]</a>
+				</div>
+			</div>
+		</div>
+		
+		<script src="xzys.json"></script>
+		<script type="text/javascript">
+			window.onload=function(){
+				//選擇框
+				var selectXZ=document.getElementById("selectXZ");
+				//左邊圖標
+				var ico=document.querySelector(".ico");
+				//inner
+				var inner=document.getElementById("inner");
+				//星星
+				var yunshiChild=document.querySelector(".yunshiChild");
+				
+				selectXZ.onchange=function(){
+					ico.style.backgroundPosition="0 "+(-this.value*50)+"px";
+					change(xingzuo,this.value);
+				}
+				
+				function change(data,i){
+					var obj=data.xzys[i];
+					yunshiChild.style.width=obj.yunshi*8+"px";
+					inner.innerHTML=obj.inner;
+				}
+			}
+		</script>
+	</body>
+
+</html>

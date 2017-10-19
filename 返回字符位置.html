@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>返回字符位置</title>
+	</head>
+	<body>
+		字符串：<input type="text" id="txt" />  索引字符串：<input type="text" id="index" />
+		<button id="btn1">从前面索引</button><button id="btn2">从后面索引</button>
+		
+		
+		<script type="text/javascript">
+			window.onload=function(){
+				var txt=document.getElementById("txt");
+				var index=document.getElementById("index");
+				var btn1=document.getElementById("btn1");
+				var btn2=document.getElementById("btn2");
+				btn1.onclick=function(){
+					alert(txt.value.indexOf(index.value));	//如果找不到返回-1，如果找到就返回索引
+				}
+				btn2.onclick=function(){
+					alert(txt.value.lastIndexOf(index.value));	//如果找不到返回-1，如果找到就返回索引
+				}
+			}
+		</script>
+	</body>
+</html>

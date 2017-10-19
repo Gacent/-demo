@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>检测字符串长度</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			window.onload=function(){
+				var txt="what the fuck 你说啥";
+				
+				function checkCode(str){
+					var len=0;
+					var c=0;			//存储字符编码
+					for(var i=0;i<str.length;i++){
+						c=str.charCodeAt(i);
+						if(c>=0&&c<=127){
+							len++;
+						}else if(c>127){
+							len=len+2;
+						}
+					}
+					return len;
+				}
+				
+				console.log(checkCode(txt));
+			}
+		</script>
+	</body>
+</html>

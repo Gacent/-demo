@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>仿淘宝搜索框</title>
+		<style type="text/css">
+			.search{
+				width: 300px;
+				height: 30px;
+				margin: 100px auto;
+				position: relative;
+			}
+			.search input{
+				width: 300px;
+				height: 30px;
+				line-height: 30px;
+				text-indent: 6px;
+			}
+			.search label{
+				position: absolute;
+				left: 10px;
+				top: 30%;
+				font-size: 12px;
+				cursor: text;
+				color: #ccc;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="search">
+			<input type="text" name="txt" id="txt" value="" />
+			<label for="txt" id="message">必败的国际大牌</label>			
+		</div>
+		<script type="text/javascript">
+			window.onload=function(){
+				var txt=document.getElementById("txt");
+				var message=document.getElementById("message");
+				
+				
+				/*正常浏览器，监听用户输入时候*/
+				txt.oninput=function(){
+					if(this.value!=""){
+						message.style.display="none";
+					}else if(this.value==""){
+						message.style.display="block";
+					}
+				}
+				
+				
+				/*IE678，使用onpropertyChange*/
+				txt.onpropertychange=function(){
+					if(this.value!=""){
+						message.style.display="none";
+					}else if(this.value==""){
+						message.style.display="block";
+					}
+				}
+			}
+		</script>
+	</body>
+</html>

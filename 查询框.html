@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>查询框</title>
+		<style type="text/css">
+			.search {
+				width: 258px;
+				height: 40px;
+				background: #ccc;
+				margin: 100px auto;
+			}
+			
+			#search {
+				width: 208px;
+				background: url(images/left.jpg) no-repeat top left;
+				height: 40px;
+				line-height: 40px;
+				float: left;
+				border: 0 none;
+				outline-style: none;
+				color: #ccc;
+				padding: 0;
+				padding-left: 8px;
+			}
+			
+			#button {
+				width: 42px;
+				height: 40px;
+				float: left;
+				background: url(images/right.jpg) no-repeat top left;
+				border: 0 none;
+				outline-style: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="search">
+			<input type="text" name="search" id="search" value="请输入···" />
+			<button id="button"></button>
+		</div>
+		<script type="text/javascript">
+			window.onload = function() {
+				var searchBox = document.querySelector("#search");
+				searchBox.addEventListener("blur", function() {
+					if(this.value == "") {
+						this.value = "请输入···";
+						this.style.color="#ccc";
+					}
+				}, false);
+
+				searchBox.addEventListener("focus", function() {
+					if(this.value == "请输入···") {
+						this.value = "";
+						this.style.color="#000";
+					}
+				}, false)
+			}
+		</script>
+	</body>
+
+</html>

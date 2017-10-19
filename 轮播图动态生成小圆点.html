@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>动态生成小圆点</title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			ul,ol{
+				list-style: none;
+			}
+			.box{
+				width: 730px;
+				height: 454px;
+				margin: 100px auto;
+				overflow: hidden;
+				position: relative;
+			}
+			.circle{
+				position: absolute;
+				left: 50%;
+				margin-left: -60px;
+				bottom: 10px;
+			}
+			.circle span{
+				float: left;
+				width: 18px;
+				height: 18px;
+				border-radius: 50%;
+				background-color:pink;
+				text-align: center;
+				line-height: 18px;
+				margin-right: 10px;
+				cursor: pointer;
+			}
+			.circle span.current{
+				background-color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<div class="slider">
+				<ul id="ul">
+					<li><img src="images/11.jpg" alt="" /></li>
+					<li><img src="images/22.jpg" alt="" /></li>
+					<li><img src="images/33.jpg" alt="" /></li>
+					<li><img src="images/44.jpg" alt="" /></li>
+					<li><img src="images/55.jpg" alt="" /></li>
+					<li><img src="images/66.jpg" alt="" /></li>
+				</ul>
+			</div>
+			
+		</div>
+		<script type="text/javascript">
+			window.onload=function(){
+				//获取变量
+				var box=document.querySelector(".box");
+				var slider=document.querySelector(".slider");
+				
+				//创建容器
+				var circle=document.createElement("div");
+				box.appendChild(circle);
+				circle.classList.add("circle");
+				
+				//获取ul里面的图片多少
+				var ul=document.getElementById("ul");
+				var list=ul.children;
+				
+				//对应创建多少个span
+				for(var i=0;i<list.length;i++){
+					var span=document.createElement("span");
+					span.innerHTML=i+1;
+					circle.appendChild(span);
+				}
+				circle.children[0].classList.add("current");
+				
+				//动态更改整体circle的宽度
+				var wd=circle.offsetWidth;
+				circle.style.marginLeft=-wd/2+"px";
+				
+			}
+		</script>
+	</body>
+</html>
