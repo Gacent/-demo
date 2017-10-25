@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>兼容性ScrollTop</title>
+		<style type="text/css">
+			body {
+				height: 3030px;
+			}
+		</style>
+	</head>
+	<h1>向下滚动，看title</h1>
+	<body>
+		<script type="text/javascript">
+			window.onload = function() {
+				function scroll() {
+					if(window.pageYOffset != null) { //ie9+和其他浏览器
+						return {
+							left: window.pageXOffset,
+							top: window.pageYOffset
+						}
+					} else if(document.compatMode == "CSS1Compat") { //声明了DTD
+						//检测是不是怪异模式的浏览器，就是没有DTD
+						return {
+							left: document.documentElement.scrollLeft,
+							top: document.documentElement.scrollTop
+						}
+					}
+					return {
+						//剩下的都是怪异的
+						left: document.body.scrollLeft,
+						top: document.body.scrollTop
+					}
+				}
+				window.onscroll = function() {
+					document.title = parseInt(scroll().top);
+				}
+			}
+		</script>
+	</body>
+
+</html>
