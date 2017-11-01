@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			body {
+				width: 2000px;
+			}
+			
+			.top {
+				position: fixed;
+				right: 50px;
+				bottom: 100px;
+				display: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="gotop" class="top">
+			<img src="images/Top.jpg" alt="" />
+		</div>
+		<p>我是内容部分，有很多恩多很多</p>
+		<p>我是内容部分，有很多恩多很多</p>
+		<p>我是内容部分，有很多恩多很多</p>
+		<p>我是内容部分，有很多恩多很多</p>
+		<p>我是内容部分，有很多恩多很多</p>
+		<p>我是内容部分，有很多恩多很多</p>
+		<p>我是内容部分，有很多恩多很多</p>
+		<p>我是内容部分，有很多恩多很多</p>
+		<p>我是内容部分，有很多恩多很多</p>
+		<p>我是内容部分，有很多恩多很多</p>
+		<p>我是内容部分，有很多恩多很多</p>
+		<p>我是内容部分，有很多恩多很多</p>
+		<p>我是内容部分，有很多恩多很多</p>
+		<p>我是内容部分，有很多恩多很多</p>
+		<p>我是内容部分，有很多恩多很多</p>
+		<p>我是内容部分，有很多恩多很多</p>
+		<p>我是内容部分，有很多恩多很多</p>
+		<p>我是内容部分，有很多恩多很多</p>
+		<p>我是内容部分，有很多恩多很多</p>
+		<p>我是内容部分，有很多恩多很多</p>
+		<p>我是内容部分，有很多恩多很多</p>
+		<p>我是内容部分，有很多恩多很多</p>
+		<p>我是内容部分，有很多恩多很多</p>
+		<p>我是内容部分，有很多恩多很多</p>
+		<p>我是内容部分，有很多恩多很多</p>
+		<p>我是内容部分，有很多恩多很多</p>
+		<p>我是内容部分，有很多恩多很多</p>
+		<p>我是内容部分，有很多恩多很多</p>
+		<p>我是内容部分，有很多恩多很多</p>
+		<p>我是内容部分，有很多恩多很多</p>
+		<p>我是内容部分，有很多恩多很多</p>
+		<p>我是内容部分，有很多恩多很多</p>
+		<p>我是内容部分，有很多恩多很多</p>
+		<p>我是内容部分，有很多恩多很多</p>
+		<p>我是内容部分，有很多恩多很多</p>
+		<p>我是内容部分，有很多恩多很多</p>
+		<p>我是内容部分，有很多恩多很多</p>
+		<p>我是内容部分，有很多恩多很多</p>
+		<p>我是内容部分，有很多恩多很多</p>
+		<p>我是内容部分，有很多恩多很多</p>
+		<p>我是内容部分，有很多恩多很多</p>
+		<p>我是内容部分，有很多恩多很多</p>
+
+		<script type="text/javascript">
+			window.onload = function() {
+				function scroll() {
+					if(window.pageYOffset != null) { //ie9+和其他浏览器
+						return {
+							left: window.pageXOffset,
+							top: window.pageYOffset
+						}
+					} else if(document.compatMode == "CSS1Compat") { //声明了DTD
+						//检测是不是怪异模式的浏览器，就是没有DTD
+						return {
+							left: document.documentElement.scrollLeft,
+							top: document.documentElement.scrollTop
+						}
+					}
+					return {
+						//剩下的都是怪异的
+						left: document.body.scrollLeft,
+						top: document.body.scrollTop
+					}
+				}
+				
+				var leader=0;
+				var target=0;
+				var timer=null;
+				var gotoTop=document.getElementById("gotop");
+				window.onscroll=function(){
+					scroll().top>0?gotoTop.style.display="block":gotoTop.style.display="none";
+					leader=scroll().top;
+				}
+				gotoTop.onclick=function(){
+					target=0;
+					clearInterval(timer);
+					timer=setInterval(function(){
+						leader=leader+(target-leader)/8;
+						window.scrollTo(0,leader);			//关键函数
+						if(leader==0){
+							clearInterval(timer);
+						}
+					},30);
+				}
+			}
+		</script>
+	</body>
+
+</html>

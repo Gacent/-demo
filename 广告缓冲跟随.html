@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>广告缓冲跟随</title>
+		<style type="text/css">
+			#pic {
+				position: absolute;
+				top: 100px;
+				left: 10px;
+			}
+			
+			#demo {
+				text-align: center;
+			}
+		</style>
+	</head>
+
+	<body>
+		<img src="images/aside.jpg" alt="" id="pic" />
+		<div id="demo">
+			<p>天王盖地虎，小鸡炖蘑菇</p>
+			<p>天王盖地虎，小鸡炖蘑菇</p>
+			<p>天王盖地虎，小鸡炖蘑菇</p>
+			<p>天王盖地虎，小鸡炖蘑菇</p>
+			<p>天王盖地虎，小鸡炖蘑菇</p>
+			<p>天王盖地虎，小鸡炖蘑菇</p>
+			<p>天王盖地虎，小鸡炖蘑菇</p>
+			<p>天王盖地虎，小鸡炖蘑菇</p>
+			<p>天王盖地虎，小鸡炖蘑菇</p>
+			<p>天王盖地虎，小鸡炖蘑菇</p>
+			<p>天王盖地虎，小鸡炖蘑菇</p>
+			<p>天王盖地虎，小鸡炖蘑菇</p>
+			<p>天王盖地虎，小鸡炖蘑菇</p>
+			<p>天王盖地虎，小鸡炖蘑菇</p>
+			<p>天王盖地虎，小鸡炖蘑菇</p>
+			<p>天王盖地虎，小鸡炖蘑菇</p>
+			<p>天王盖地虎，小鸡炖蘑菇</p>
+			<p>天王盖地虎，小鸡炖蘑菇</p>
+			<p>天王盖地虎，小鸡炖蘑菇</p>
+			<p>天王盖地虎，小鸡炖蘑菇</p>
+			<p>天王盖地虎，小鸡炖蘑菇</p>
+			<p>天王盖地虎，小鸡炖蘑菇</p>
+			<p>天王盖地虎，小鸡炖蘑菇</p>
+			<p>天王盖地虎，小鸡炖蘑菇</p>
+			<p>天王盖地虎，小鸡炖蘑菇</p>
+			<p>天王盖地虎，小鸡炖蘑菇</p>
+			<p>天王盖地虎，小鸡炖蘑菇</p>
+			<p>天王盖地虎，小鸡炖蘑菇</p>
+			<p>天王盖地虎，小鸡炖蘑菇</p>
+			<p>天王盖地虎，小鸡炖蘑菇</p>
+			<p>天王盖地虎，小鸡炖蘑菇</p>
+			<p>天王盖地虎，小鸡炖蘑菇</p>
+			<p>天王盖地虎，小鸡炖蘑菇</p>
+			<p>天王盖地虎，小鸡炖蘑菇</p>
+			<p>天王盖地虎，小鸡炖蘑菇</p>
+			<p>天王盖地虎，小鸡炖蘑菇</p>
+			<script type="text/javascript">
+				window.onload = function() {
+					function scroll() {
+						if(window.pageYOffset != null) { //ie9+和其他浏览器
+							return {
+								left: window.pageXOffset,
+								top: window.pageYOffset
+							}
+						} else if(document.compatMode == "CSS1Compat") { //声明了DTD
+							//检测是不是怪异模式的浏览器，就是没有DTD
+							return {
+								left: document.documentElement.scrollLeft,
+								top: document.documentElement.scrollTop
+							}
+						}
+						return {
+							//剩下的都是怪异的
+							left: document.body.scrollLeft,
+							top: document.body.scrollTop
+						}
+					}
+					
+					var pic=document.getElementById("pic");
+					var leader=0;
+					var target=0;
+					var timer=null;
+					var top=pic.offsetTop;	//不能变化
+					
+					window.onscroll=function(){
+						clearInterval(timer);
+						target=scroll().top+top;
+						console.log(target)
+						timer=setInterval(function(){
+							leader=leader+(target-leader)/10;
+							pic.style.top=leader+'px';
+						},30);
+					}
+				}
+			</script>
+		</div>
+	</body>
+
+</html>
